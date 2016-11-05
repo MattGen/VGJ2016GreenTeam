@@ -24,8 +24,12 @@ public class GrabbableObject : MonoBehaviour
 	    {
 	        if (Vector3.Distance(toolPositionMine.transform.position, toolPositionOther.transform.position) < 0.1f)
 	        {
-	            var curr = toolPositionOther.transform.parent.transform.localRotation;
-                curr.eulerAngles = new Vector3(curr.x, curr.y, toolPositionMine.transform.localRotation.eulerAngles.y);
+				var obj = toolPositionOther.transform.parent.GetComponent<InterractableObject> ();
+				if (obj != null) {
+					if (!obj.Rotate ())
+						return;
+				}
+				toolPositionOther.transform.parent.Rotate(new Vector3(0,0,1f));
 	        }
 	    }
 	}
