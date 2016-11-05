@@ -33,7 +33,10 @@ public class ControllerScript : MonoBehaviour
                 
                 var obj = col.gameObject.GetComponent<GrabbableObject>();
                 if (obj != null)
+                {
+                    obj.Device = device;
                     obj.Grabbed = true;
+                }
             }
             if (device.GetPressUp(SteamVR_Controller.ButtonMask.Trigger))
             {

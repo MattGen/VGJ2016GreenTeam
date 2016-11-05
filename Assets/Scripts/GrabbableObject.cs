@@ -8,6 +8,8 @@ public class GrabbableObject : MonoBehaviour
 
     [HideInInspector]
     public bool Grabbed = false;
+    [HideInInspector]
+    public SteamVR_Controller.Device Device;
 
     private GameObject toolPositionMine;
     private GameObject toolPositionOther;
@@ -22,7 +24,8 @@ public class GrabbableObject : MonoBehaviour
 	void Update () {
 	    if (Grabbed)
 	    {
-	        if (Vector3.Distance(toolPositionMine.transform.position, toolPositionOther.transform.position) < 0.1f)
+	        if(Device.GetPressDown(SteamVR_Controller.ButtonMask.Touchpad)
+                    && Vector3.Distance(toolPositionMine.transform.position, toolPositionOther.transform.position) < 0.1f)
 	        {
 				var obj = toolPositionOther.transform.parent.GetComponent<InterractableObject> ();
 				if (obj != null) {
