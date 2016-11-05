@@ -48,10 +48,12 @@ public class ControllerScript : MonoBehaviour
 
     IEnumerator LerpToHand(GameObject GrabbableObject)
     {
-        var startingPos = GrabbableObject.transform.localPosition;
-        while (Vector3.Distance(GrabbableObject.transform.localPosition, toolPosition.transform.localPosition) >= 0.1f )
+		while (Vector3.Distance(GrabbableObject.transform.position, toolPosition.transform.position) >= 0.01f 
+			&& Quaternion.Angle(GrabbableObject.transform.rotation, toolPosition.transform.rotation) >= 0.01f)
         {
-            GrabbableObject.transform.localPosition = Vector3.Lerp(startingPos, toolPosition.transform.localPosition, LerpSeed);
+			//Debug.Log (Vector3.Distance (GrabbableObject.transform.position, toolPosition.transform.position));
+			GrabbableObject.transform.position = Vector3.Lerp(GrabbableObject.transform.position, toolPosition.transform.position, LerpSeed);
+			GrabbableObject.transform.rotation = Quaternion.Lerp(GrabbableObject.transform.rotation, toolPosition.transform.rotation, LerpSeed);
             yield return null;
         }
     }
