@@ -19,7 +19,7 @@ public class ControllerScript : MonoBehaviour
 
     void OnTriggerStay(Collider col)
     {
-        if (col.tag == "Wrench")
+		if (col.tag == "Grabbable")
         {
             if (device.GetPressDown(SteamVR_Controller.ButtonMask.Trigger))
             {

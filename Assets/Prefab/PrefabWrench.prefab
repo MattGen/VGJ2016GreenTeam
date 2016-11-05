@@ -88,7 +88,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000013592200020}
   m_Layer: 0
-  m_Name: HeavyWrench01
+  m_Name: PrefabWrench
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
