@@ -30,12 +30,20 @@ public class ControllerScript : MonoBehaviour
                 col.gameObject.GetComponent<Rigidbody>().isKinematic = true;
                 col.gameObject.transform.SetParent(gameObject.transform);
                 StartCoroutine(LerpToHand(col.gameObject));
+                
+                var obj = col.gameObject.GetComponent<GrabbableObject>();
+                if (obj != null)
+                    obj.Grabbed = true;
             }
             if (device.GetPressUp(SteamVR_Controller.ButtonMask.Trigger))
             {
                 col.gameObject.GetComponent<Rigidbody>().isKinematic = false;
                 col.gameObject.transform.SetParent(null);
                 TossObject(col.attachedRigidbody);
+
+                var obj = col.gameObject.GetComponent<GrabbableObject>();
+                if (obj != null)
+                    obj.Grabbed = false;
             }
         }
     }
@@ -51,7 +59,6 @@ public class ControllerScript : MonoBehaviour
 		while (Vector3.Distance(GrabbableObject.transform.position, toolPosition.transform.position) >= 0.01f 
 			&& Quaternion.Angle(GrabbableObject.transform.rotation, toolPosition.transform.rotation) >= 0.01f)
         {
-			//Debug.Log (Vector3.Distance (GrabbableObject.transform.position, toolPosition.transform.position));
 			GrabbableObject.transform.position = Vector3.Lerp(GrabbableObject.transform.position, toolPosition.transform.position, LerpSeed);
 			GrabbableObject.transform.rotation = Quaternion.Lerp(GrabbableObject.transform.rotation, toolPosition.transform.rotation, LerpSeed);
             yield return null;
