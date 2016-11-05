@@ -9,7 +9,7 @@ public class InterractableObject : MonoBehaviour {
 	private float timeSinceLastRotation;
 
 	public void Start() {
-		currentRotationTime = RotationTime;
+		currentRotationTime = 0;
 	}
 
 	public void Update(){

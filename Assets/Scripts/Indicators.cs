@@ -11,8 +11,9 @@ public class Indicators : MonoBehaviour
 	// Update is called once per frame
 	void Update ()
 	{
-        var ratio = Valve.RotationTime / Valve.currentRotationTime;
-	    ValveIndicator.fillAmount = ratio;
+		var ratio = 1 - Valve.currentRotationTime / Valve.RotationTime;
+		Debug.Log (ratio);
+	    ValveIndicator.fillAmount = ratio/2;
         ValveIndicator.color = new Color(1-ratio, ratio, 0);
 	}
 }
