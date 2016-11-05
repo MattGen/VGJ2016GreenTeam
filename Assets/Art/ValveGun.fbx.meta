@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 25f0ea5b8ef752445a8a066e9a5724f1
-timeCreated: 1478323350
+guid: e434c2abe25b5b54c85411d70bcf378e
+timeCreated: 1478349184
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
@@ -9,8 +9,7 @@ ModelImporter:
     400000: //RootNode
     2300000: //RootNode
     3300000: //RootNode
-    4300000: pistolet_colle1:pCylinder10
-    4300002: pistolet_colle1:pCylinder10.001
+    4300000: polySurface12 pistolet_colle1:pCylinder10
   materials:
     importMaterials: 1
     materialName: 0
