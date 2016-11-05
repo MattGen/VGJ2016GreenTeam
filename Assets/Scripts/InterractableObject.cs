@@ -20,9 +20,10 @@ public class InterractableObject : MonoBehaviour {
 	}
 
 	public void Update(){
-		if (!Fire && Activated && currentRotationTime < RotationTime) {			
+		if (Activated && currentRotationTime < RotationTime) {			
 			currentRotationTime += Time.deltaTime/10;
-			transform.Rotate(new Vector3(0,0,-0.1f));
+			if(!Fire)
+				transform.Rotate(new Vector3(0,0,-0.1f));
 		}
 	}
 
