@@ -5,11 +5,15 @@ public class ControllerScript : MonoBehaviour
 {
     public SteamVR_TrackedObject trackedObject;
     public SteamVR_Controller.Device device;
-    public float throwSpeed = 2.0f;
+    public float ThrowSpeed = 2.0f;
+    public float LerpSeed = 2f;
+
+    private GameObject toolPosition;
 
     void Start()
     {
         trackedObject = GetComponent<SteamVR_TrackedObject>();
+        toolPosition = transform.Find("ToolPosition").gameObject;
     }
 
     void Update()
@@ -25,6 +29,7 @@ public class ControllerScript : MonoBehaviour
             {
                 col.gameObject.GetComponent<Rigidbody>().isKinematic = true;
                 col.gameObject.transform.SetParent(gameObject.transform);
+                StartCoroutine(LerpToHand(col.gameObject));
             }
             if (device.GetPressUp(SteamVR_Controller.ButtonMask.Trigger))
             {
@@ -37,7 +42,17 @@ public class ControllerScript : MonoBehaviour
 
     public void TossObject(Rigidbody rigidBody)
     {
-        rigidBody.velocity = device.velocity*throwSpeed;
+        rigidBody.velocity = device.velocity* ThrowSpeed;
         rigidBody.angularVelocity = device.angularVelocity;
+    }
+
+    IEnumerator LerpToHand(GameObject GrabbableObject)
+    {
+        var startingPos = GrabbableObject.transform.localPosition;
+        while (Vector3.Distance(GrabbableObject.transform.localPosition, toolPosition.transform.localPosition) >= 0.1f )
+        {
+            GrabbableObject.transform.localPosition = Vector3.Lerp(startingPos, toolPosition.transform.localPosition, LerpSeed);
+            yield return null;
+        }
     }
 }
