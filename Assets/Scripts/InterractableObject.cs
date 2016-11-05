@@ -4,7 +4,8 @@ using System.Collections;
 public class InterractableObject : MonoBehaviour {
 
 	public float RotationTime;
-	private float currentRotationTime;
+    [HideInInspector]
+	public float currentRotationTime;
 	private float timeSinceLastRotation;
 
 	public void Start() {
