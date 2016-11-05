@@ -16,11 +16,12 @@ public class ControllerScript : MonoBehaviour
     {
         trackedObject = GetComponent<SteamVR_TrackedObject>();
         toolPosition = transform.Find("ToolPosition").gameObject;
+		device = SteamVR_Controller.Input((int) trackedObject.index);
     }
 
     void Update()
     {
-        device = SteamVR_Controller.Input((int) trackedObject.index);
+        
     }
 
     void OnTriggerStay(Collider col)
@@ -65,8 +66,9 @@ public class ControllerScript : MonoBehaviour
 
     IEnumerator LerpToHand(GameObject GrabbableObject)
     {
+		
 		while (Vector3.Distance(GrabbableObject.transform.position, toolPosition.transform.position) >= 0.01f 
-			&& Quaternion.Angle(GrabbableObject.transform.rotation, toolPosition.transform.rotation) >= 0.01f)
+			|| Quaternion.Angle(GrabbableObject.transform.rotation, toolPosition.transform.rotation) >= 0.01f)
         {
 			GrabbableObject.transform.position = Vector3.Lerp(GrabbableObject.transform.position, toolPosition.transform.position, LerpSeed);
 			GrabbableObject.transform.rotation = Quaternion.Lerp(GrabbableObject.transform.rotation, toolPosition.transform.rotation, LerpSeed);
