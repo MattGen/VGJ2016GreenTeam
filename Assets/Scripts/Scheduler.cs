@@ -30,13 +30,14 @@ public class Scheduler : MonoBehaviour {
 		valve.Activated = true;
 		Indicator.Valve = valve;
 	}
-
+		
 	public void ActivateNextFire(InterractableObject current){
 		InterractableObject fire = null;
 		do {
 			fire = Fires [Random.Range (0, Fires.Count)];
 		} while(fire == current);
 		fire.Activated = true;
+		fire.gameObject.SetActive (true);
 		Indicator.Fire = fire;
 	}
 
