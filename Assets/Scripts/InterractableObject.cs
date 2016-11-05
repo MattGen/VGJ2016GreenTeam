@@ -15,21 +15,14 @@ public class InterractableObject : MonoBehaviour {
 
 	public void Start() {
 		currentRotationTime = 0;
+		if(Fire)
+			gameObject.SetActive (false);
 	}
 
 	public void Update(){
-		if (Activated && currentRotationTime < RotationTime) {			
+		if (!Fire && Activated && currentRotationTime < RotationTime) {			
 			currentRotationTime += Time.deltaTime/10;
 			transform.Rotate(new Vector3(0,0,-0.1f));
-		}
-
-		if (Fire && Activated) {
-			var particle = transform.GetComponent<ParticleSystem> ();
-			if(!particle.isPlaying)
-				particle.Play ();
-		} else if (Fire && !Activated) {
-			var particle = transform.GetComponent<ParticleSystem> ();
-			particle.Stop ();
 		}
 	}
 
@@ -47,6 +40,7 @@ public class InterractableObject : MonoBehaviour {
 	}
 
 	public void ExtinctFire(){
+		Activated = false;
 		gameObject.SetActive (false);
 		Scheduler.Get ().ActivateNextFire (this);
 	}

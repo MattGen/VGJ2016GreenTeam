@@ -26,15 +26,16 @@ public class GrabbableObject : MonoBehaviour
 		switch (InteractWith) {
 			case OtherObject.Valve:
 				interactWiths = Scheduler.Get ().Valves;
+				toolPositionOthers = new List<GameObject> ();
+				foreach(var interactWith in interactWiths)
+					toolPositionOthers.Add(interactWith.transform.Find("ToolPosition").gameObject);
 			break;
 			case OtherObject.Fire:
 				interactWiths = Scheduler.Get ().Fires;
 			break;
 		}
         toolPositionMine = transform.Find("ToolPosition").gameObject;
-		toolPositionOthers = new List<GameObject> ();
-		foreach(var interactWith in interactWiths)
-			toolPositionOthers.Add(interactWith.transform.Find("ToolPosition").gameObject);
+
     }
 	
 	// Update is called once per frame
