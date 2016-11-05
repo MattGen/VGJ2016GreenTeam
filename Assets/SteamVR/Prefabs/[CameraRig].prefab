@@ -97,6 +97,8 @@ GameObject:
   m_Component:
   - 4: {fileID: 402434}
   - 114: {fileID: 11463128}
+  - 135: {fileID: 135000011345925016}
+  - 114: {fileID: 114000010053016210}
   m_Layer: 0
   m_Name: Controller (right)
   m_TagString: Untagged
@@ -150,6 +152,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 478542}
+  - {fileID: 4000012148003142}
   m_Father: {fileID: 420908}
   m_RootOrder: 1
 --- !u!4 &408470
@@ -173,7 +176,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 189822}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -221,6 +224,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 482514}
+  - {fileID: 4000013967742702}
   m_Father: {fileID: 420908}
   m_RootOrder: 0
 --- !u!4 &478542
@@ -527,6 +531,76 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 146900}
   m_IsPrefabParent: 1
+--- !u!1 &1000012900364726
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 4000013967742702}
+  m_Layer: 0
+  m_Name: ToolPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1000013317129786
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 4000012148003142}
+  m_Layer: 0
+  m_Name: ToolPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4000012148003142
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013317129786}
+  m_LocalRotation: {x: 0.45361167, y: -0.5385215, z: -0.53194654, w: 0.47038704}
+  m_LocalPosition: {x: 0.00070162304, y: -0.006554718, z: 0.010302886}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: -8.352, y: -89.524, z: -88.733}
+  m_Children: []
+  m_Father: {fileID: 402434}
+  m_RootOrder: 1
+--- !u!4 &4000013967742702
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012900364726}
+  m_LocalRotation: {x: 0.45361167, y: -0.5385215, z: -0.53194654, w: 0.47038704}
+  m_LocalPosition: {x: 0.00070162304, y: -0.006554718, z: 0.010302886}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalEulerAnglesHint: {x: -8.352, y: -89.524, z: -88.733}
+  m_Children: []
+  m_Father: {fileID: 458974}
+  m_RootOrder: 1
+--- !u!114 &114000010053016210
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 159396}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db532f71d6acb0443a635922fe1d34e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  trackedObject: {fileID: 11463128}
+  ThrowSpeed: 2
+  LerpSeed: 0.1
 --- !u!114 &114000011496194544
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -538,8 +612,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db532f71d6acb0443a635922fe1d34e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trackedObject: {fileID: 0}
-  throwSpeed: 2
+  trackedObject: {fileID: 11411726}
+  ThrowSpeed: 2
+  LerpSeed: 0.1
 --- !u!135 &135000011264460554
 SphereCollider:
   m_ObjectHideFlags: 1
@@ -550,5 +625,17 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.09272146
+  m_Radius: 0.2
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!135 &135000011345925016
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 159396}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.2
   m_Center: {x: 0, y: 0, z: 0}
