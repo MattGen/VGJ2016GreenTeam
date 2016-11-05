@@ -8,6 +8,8 @@ public class ControllerScript : MonoBehaviour
     public float ThrowSpeed = 2.0f;
     public float LerpSeed = 2f;
 
+	private bool objectGrabbed = false;
+
     private GameObject toolPosition;
 
     void Start()
@@ -25,8 +27,10 @@ public class ControllerScript : MonoBehaviour
     {
 		if (col.tag == "Grabbable")
         {
-            if (device.GetPressDown(SteamVR_Controller.ButtonMask.Trigger))
+			if (device.GetPressDown(SteamVR_Controller.ButtonMask.Trigger) && !objectGrabbed)
             {
+				objectGrabbed = true;
+
                 col.gameObject.GetComponent<Rigidbody>().isKinematic = true;
                 col.gameObject.transform.SetParent(gameObject.transform);
                 StartCoroutine(LerpToHand(col.gameObject));
@@ -38,8 +42,10 @@ public class ControllerScript : MonoBehaviour
                     obj.Grabbed = true;
                 }
             }
-            if (device.GetPressUp(SteamVR_Controller.ButtonMask.Trigger))
+			if (device.GetPressUp(SteamVR_Controller.ButtonMask.Trigger) && objectGrabbed)
             {
+				objectGrabbed = false;
+
                 col.gameObject.GetComponent<Rigidbody>().isKinematic = false;
                 col.gameObject.transform.SetParent(null);
                 TossObject(col.attachedRigidbody);

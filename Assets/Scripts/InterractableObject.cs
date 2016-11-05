@@ -13,7 +13,7 @@ public class InterractableObject : MonoBehaviour {
 
 	public void Update(){
 		if (currentRotationTime < RotationTime) {			
-			currentRotationTime += Time.deltaTime/4;
+			currentRotationTime += Time.deltaTime/10;
 			transform.Rotate(new Vector3(0,0,-0.1f));
 		}
 	}

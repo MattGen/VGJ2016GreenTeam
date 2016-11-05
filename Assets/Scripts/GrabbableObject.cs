@@ -24,7 +24,7 @@ public class GrabbableObject : MonoBehaviour
 	void Update () {
 	    if (Grabbed)
 	    {
-	        if(Device.GetPressDown(SteamVR_Controller.ButtonMask.Touchpad)
+			if(Device.GetTouch(SteamVR_Controller.ButtonMask.Touchpad)
                     && Vector3.Distance(toolPositionMine.transform.position, toolPositionOther.transform.position) < 0.1f)
 	        {
 				var obj = toolPositionOther.transform.parent.GetComponent<InterractableObject> ();
