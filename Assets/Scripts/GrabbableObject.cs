@@ -60,11 +60,11 @@ public class GrabbableObject : MonoBehaviour
 			case OtherObject.Fire:
 				if (Device.GetTouch (SteamVR_Controller.ButtonMask.Touchpad)) {
 					Device.TriggerHapticPulse (500);
-					var toolPosition = transform.Find ("ToolPosition");
+					var toolPosition = transform.Find ("ToolPosition").Find ("Extinguisher");
 					toolPosition.gameObject.SetActive (true);
 					transform.Find ("Emmiter").GetComponent<ParticleSystem> ().Play ();
 				} else {
-					var toolPosition = transform.Find ("ToolPosition");
+					var toolPosition = transform.Find ("ToolPosition").Find ("Extinguisher");
 					toolPosition.gameObject.SetActive (false);
 					transform.Find ("Emmiter").GetComponent<ParticleSystem> ().Stop ();
 				}
@@ -72,7 +72,7 @@ public class GrabbableObject : MonoBehaviour
 			}
 		} else {
 			if (InteractWith == OtherObject.Fire) {
-				var toolPosition = transform.Find ("ToolPosition");
+				var toolPosition = transform.Find ("ToolPosition").Find ("Extinguisher");
 				toolPosition.gameObject.SetActive (false);
 				transform.Find ("Emmiter").GetComponent<ParticleSystem> ().Stop ();
 			}

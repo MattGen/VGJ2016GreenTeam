@@ -72,7 +72,8 @@ public class ControllerScript : MonoBehaviour
         {
 			GrabbableObject.transform.position = Vector3.Lerp(GrabbableObject.transform.position, toolPosition.transform.position, LerpSeed);
 			GrabbableObject.transform.rotation = Quaternion.Lerp(GrabbableObject.transform.rotation, toolPosition.transform.rotation, LerpSeed);
-            yield return null;
+			if (objectGrabbed)
+            	yield return null;
         }
     }
 }
