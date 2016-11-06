@@ -41,6 +41,7 @@ public class ControllerScript : MonoBehaviour
                 {
                     obj.Device = device;
                     obj.Grabbed = true;
+					transform.Find ("Model").gameObject.SetActive(false);
                 }
             }
 			if (device.GetPressUp(SteamVR_Controller.ButtonMask.Trigger) && objectGrabbed)
@@ -52,8 +53,10 @@ public class ControllerScript : MonoBehaviour
                 TossObject(col.attachedRigidbody);
 
                 var obj = col.gameObject.GetComponent<GrabbableObject>();
-                if (obj != null)
-                    obj.Grabbed = false;
+				if (obj != null) {
+					obj.Grabbed = false;
+					transform.Find ("Model").gameObject.SetActive(true);
+				}
             }
         }
     }

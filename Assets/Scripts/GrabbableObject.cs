@@ -4,7 +4,8 @@ using System.Collections.Generic;
 
 public enum OtherObject{
 	Valve,
-	Fire
+	Fire,
+	None
 }
 
 public class GrabbableObject : MonoBehaviour
@@ -22,6 +23,9 @@ public class GrabbableObject : MonoBehaviour
 
     void Start()
     {
+		if (InteractWith == OtherObject.None)
+			return;
+		
 		interactWiths = null;
 		switch (InteractWith) {
 			case OtherObject.Valve:
@@ -37,9 +41,18 @@ public class GrabbableObject : MonoBehaviour
         toolPositionMine = transform.Find("ToolPosition").gameObject;
 
     }
+
+	void OnCollisionEnter(Collision collision){
+		var audio = GetComponent<AudioSource> ();
+		if(!audio.isPlaying)
+			audio.Play ();
+	}
 	
 	// Update is called once per frame
 	void Update () {
+		if (InteractWith == OtherObject.None)
+			return;
+		
 		if (Grabbed) {
 			switch (InteractWith) {
 			case OtherObject.Valve:
@@ -53,17 +66,23 @@ public class GrabbableObject : MonoBehaviour
 								return;
 							}
 						}
-						toolPositionOther.transform.parent.Rotate (new Vector3 (0, 0, 1f));
 					}
 				}
 				break;
 			case OtherObject.Fire:
 				if (Device.GetTouch (SteamVR_Controller.ButtonMask.Touchpad)) {
+					var audios = GetComponents<AudioSource> ();
+					var audio = audios.Length > 1 ? audios [1] : audios [0];
+					if(!audio.isPlaying)
+						audio.Play();
 					Device.TriggerHapticPulse (500);
 					var toolPosition = transform.Find ("ToolPosition").Find ("Extinguisher");
 					toolPosition.gameObject.SetActive (true);
 					transform.Find ("Emmiter").GetComponent<ParticleSystem> ().Play ();
 				} else {
+					var audios = GetComponents<AudioSource> ();
+					var audio = audios.Length > 1 ? audios [1] : audios [0];
+					audio.Stop();
 					var toolPosition = transform.Find ("ToolPosition").Find ("Extinguisher");
 					toolPosition.gameObject.SetActive (false);
 					transform.Find ("Emmiter").GetComponent<ParticleSystem> ().Stop ();
@@ -72,6 +91,9 @@ public class GrabbableObject : MonoBehaviour
 			}
 		} else {
 			if (InteractWith == OtherObject.Fire) {
+				var audios = GetComponents<AudioSource> ();
+				var audio = audios.Length > 1 ? audios [1] : audios [0];
+				audio.Stop();
 				var toolPosition = transform.Find ("ToolPosition").Find ("Extinguisher");
 				toolPosition.gameObject.SetActive (false);
 				transform.Find ("Emmiter").GetComponent<ParticleSystem> ().Stop ();

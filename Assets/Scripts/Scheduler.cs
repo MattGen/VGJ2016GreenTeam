@@ -8,6 +8,8 @@ public class Scheduler : MonoBehaviour {
 	public List<InterractableObject> Valves;
 	public List<InterractableObject> Fires;
 
+	public int Score = 0;
+
 	private static Scheduler instance;
 	void Awake(){
 		instance = this;
@@ -19,6 +21,11 @@ public class Scheduler : MonoBehaviour {
 
 	void Start(){
 		ActivateNextValve (null);
+		StartCoroutine (WaitForFire());
+	}
+
+	private IEnumerator WaitForFire(){
+		yield return new WaitForSeconds (30);
 		ActivateNextFire (null);
 	}
 
@@ -38,7 +45,7 @@ public class Scheduler : MonoBehaviour {
 		} while(fire == current);
 		fire.Activated = true;
 		fire.gameObject.SetActive (true);
-		Indicator.Fire = fire;
+		Indicator.Fire = fire;	
 	}
 
 }
